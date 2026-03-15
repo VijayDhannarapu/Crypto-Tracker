@@ -1,17 +1,51 @@
-[# React + Vite
+# 🪙 Crypto Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> A React-based cryptocurrency tracker that displays real-time market data, price charts, and coin analysis using the CoinGecko API.
 
-Currently, two official plugins are available:
+🔗 **Live Demo:** [https://crypto-tracker-lime-omega.vercel.app/](https://crypto-tracker-lime-omega.vercel.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 📌 About The Project
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Crypto Tracker is a fully responsive web application built with **React JS** and powered by the **CoinGecko API**. It provides real-time cryptocurrency market data including live prices, market cap, 24-hour price changes, and interactive price charts — all in one place.
 
-## Expanding the ESLint configuration
+When a user clicks on any coin (e.g. Bitcoin), they are redirected to the Coin Analysis page. This page displays an interactive line graph showing the coin's price history. The graph color changes dynamically — green if the coin is in profit and red if it is in loss. Users can also select their preferred time range to view the graph: Last 24 Hours, Last 7 Days, Last 1 Month, or a Custom Date Range.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-](https://crypto-tracker-lime-omega.vercel.app/)
+---
+
+## ✨ Features
+
+- 📊 **Real-Time Market Data** — Fetches live coin prices, market cap, volume, and percentage changes
+- 📈 **Price Charts** — Interactive historical price charts for individual cryptocurrencies
+- 🔍 **Coin Search** — Search for any cryptocurrency by name
+- 💹 **Coin Details Page** — Deep-dive into individual coin statistics
+- 🌓 ** Dark And Light ** -- user can change the theme
+- 📱 **Responsive Design** — Works seamlessly on desktop, tablet, and mobile
+- ⚡ **Fast Performance** — Powered by Vite for lightning-fast builds and HMR
+- 🌐 **Deployed on Vercel** — Live and accessible anytime
+
+---
+
+## 🛠️ Tech Stack
+
+| Technology | Purpose |
+|---|---|
+| React JS | Frontend UI library |
+| Vite | Build tool & dev server |
+| CoinGecko API | Cryptocurrency market data |
+| JavaScript (ES6+) | Core language |
+| CSS3 | Styling & responsive layout |
+| Vercel | Deployment & hosting |
+
+---
+
+
+
+## 🌐 API Used
+
+This project uses the **[CoinGecko API](https://www.coingecko.com/en/api)** — a free, comprehensive cryptocurrency data API.
+
+- No API key required for public endpoints
+- Provides real-time prices, market data, and historical charts
+---

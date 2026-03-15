@@ -1,0 +1,223 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --background-color: #242424;
+  --table-bg: rgba(104, 103, 103, 0.176);
+  --trHover-bg: rgba(255, 255, 255, 0.042);
+  --special-color: rgba(126, 61, 188, 0.851);
+  --text-color: white;
+}
+
+.white {
+  --background-color: #d8d4d4;
+  --table-bg: rgba(104, 103, 103, 0.176);
+  --trHover-bg: rgba(123, 123, 123, 0.59);
+  --special-color: rgba(126, 61, 188, 0.851);
+  --text-color: black;
+}
+
+#body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  width: 100%;
+  margin: auto;
+  height: 100dvh;
+  transition: all 0.5s ease-in-out;
+}
+
+nav{
+  width: 80%;
+  background-color: rgba(104, 103, 103, 0.176);
+  margin: auto;
+  margin-bottom: 10px;
+  padding: 5px 5px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+nav h1 img {
+  height: 2rem;
+  width: 2rem;
+}
+
+#ErrorBox {
+  height: 3rem;
+  width: 20rem;
+  background-color: rgb(220, 32, 32);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  top: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  animation: open 1s 1;
+  transition: all 0.5s;
+  overflow: hidden;
+}
+@keyframes open {
+  0% {
+    width: 0px;
+  }
+  100% {
+    width: 20rem;
+  }
+}
+table {
+  width: 80%;
+  height: 100%;
+  margin: auto;
+  border-collapse: collapse;
+  text-transform: capitalize;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: var(--table-bg);
+}
+
+tr {
+  text-align: center;
+  background-color: transparent;
+}
+
+thead {
+  background-color: var(--special-color);
+  height: 3rem;
+  border-collapse: collapse;
+}
+
+tr td {
+  margin: auto;
+  padding: 15px 15px;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.164);
+}
+tr td a{
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+img {
+  width: 20px;
+  height: 20px;
+}
+
+tbody tr:hover td {
+  border-bottom: 2px solid rgb(110, 108, 108);
+  background-color: var(--trHover-bg);
+}
+
+tbody tr:hover img {
+  filter: drop-shadow(0 0 5px rgba(237, 222, 196, 0.25));
+}
+
+#inputBar {
+  width: 80%;
+  margin: auto;
+}
+
+input {
+  width: 350px;
+  height: 2rem;
+  margin: 10px auto;
+  outline: none;
+  border-radius: 4px;
+  padding: 5px 5px;
+  background-color: transparent;
+  color: var(--text-color);
+}
+
+input:focus {
+  border: 2px solid var(--special-color);
+}
+
+@media (min-width: 600px) and (max-width : 1024px) {
+  tr td {
+    padding: 5px 5px;
+    font-size: x-small;
+  }
+  img {
+    width: 10px;
+    height: 10px;
+  }
+}
+@media (max-width : 600px) {
+  input{
+    width: 95%;
+  }
+  table , thead , tbody , tr , th , td{
+    display: block;
+  }
+  thead{
+    display: none;
+  }
+  tr{
+    padding: 10px;
+    border-bottom: 2px solid rgba(76, 76, 76, 0.533);
+    margin-bottom: 2px;
+    border-radius: 10px;
+  }
+  tr td {
+    font-size: x-large;
+    text-align: right;
+    border: none;
+  } 
+}
+#bar{
+  display: flex;
+  overflow: hidden;
+}
+#ball{
+  animation: move 2s infinite ;
+  transition: all 0.5s;
+}#ball1{
+  transform: translateX(350px) ;
+  animation: move 3s infinite 2s;
+}
+#ball2{
+  transform: translateX(350px);
+  animation: move 4s infinite 4s;
+}
+@keyframes move {
+  0%{
+    transform: translateX(-330px);
+    transition: all 0.5s;
+  }
+  100%{
+    transform: translateX(350px);
+  }
+}
+
+.graphCard{
+  width: 50%;
+  height: 100%;
+  margin: 100px auto;
+}
+
+@media (max-width : 600px) {
+  .graphCard Line {
+    width: 100%;
+    height: 500px;
+  }
+}
+button{
+  width: 50px;
+  margin-left: 10px;
+}
+.coinGraphBody{
+  width: 80%;
+  height: 100%;
+  margin: auto;
+}
+.btns-div{
+  width: 400px;
+  height: 20%;
+  border: 2px solid rgba(52, 51, 51, 0.176);
+  background-color: rgba(104, 103, 103, 0.064);
+  border-radius: 10px;
+}

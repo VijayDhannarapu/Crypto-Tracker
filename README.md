@@ -2,7 +2,7 @@
 
 > A React-based cryptocurrency tracker that displays real-time market data, price charts, and coin analysis using the CoinGecko API.
 
-🔗 **Live Demo:** [https://crypto-tracker-lime-omega.vercel.app/](https://crypto-tracker-lime-omega.vercel.app/)
+🔗 **Live Demo:** [https://crypto-tracker-lime-omega.vercel.app/](https://crypto-tracker-ixbs.vercel.app/)
 
 ---
 

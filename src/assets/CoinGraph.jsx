@@ -74,6 +74,8 @@ export const CoinGraph = ({graphRange}) => {
                     label: "Price: ₹",
                     data: graphData.map((item) => item.price),
                     borderColor : lineColor,
+                    backgroundColor:(lineColor === 'red') ? 'rgba(192, 75, 83, 0.2)' : 'rgba(75, 192, 192, 0.2)',
+                    fill : true,
                     pointHoverBorderColor : (lineColor == "red" ? "green" : "red"),
                     pointHoverBorderWidth : 10
                 }]

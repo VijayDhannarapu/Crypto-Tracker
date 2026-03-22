@@ -3,11 +3,12 @@ import Logo from './assets/Images/Logo.png'
 import { CryptoData } from './assets/CryptoData'
 import { createBrowserRouter, RouterProvider, useParams } from 'react-router-dom';
 import { EachPage } from './assets/EachPage';
-import { CoinGraph } from './assets/CoinGraph';
 import { cryptoDataContect } from './assets/ContextApi';
 import axios from "axios";
 import { Link } from 'react-router-dom';
 import './App.css'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMoon,faSun } from '@fortawesome/free-solid-svg-icons';
 
 const App = () => {
   const [cryptoData, setCryptoData] = useState([]);
@@ -61,7 +62,9 @@ const App = () => {
 
         <nav>
           <h1>Crypto Tracker <img src={Logo} alt="logo" /> </h1>
-          <button onClick={() => setTheme((theme == "dark") ? "white" : "dark")}>{(theme == "dark") ? "White" : "Dark"}</button>
+          <button onClick={() => setTheme((theme == "dark") ? "white" : "dark")}>{(theme == "dark") ? 
+            <FontAwesomeIcon icon={faSun} /> : 
+            <FontAwesomeIcon icon={faMoon} />} </button>
         </nav>
 
         <cryptoDataContect.Provider value={{

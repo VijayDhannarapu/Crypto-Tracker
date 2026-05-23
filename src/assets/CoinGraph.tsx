@@ -2,29 +2,38 @@ import axios from "axios";
 import zoomPlugin from "chartjs-plugin-zoom"
 import { Chart as ChartJs } from "chart.js/auto";
 ChartJs.register(zoomPlugin);
-
 import {  useContext, useState } from "react";
 import { useEffect } from "react";
 import { Line } from "react-chartjs-2";
 import { useParams } from "react-router-dom";
-import { cryptoDataContect } from "./ContextApi";
+import { cryptoDataContext } from "./ContextApi";
 import { Loading } from "./Loading";
 import { ErrorMessage } from "./ErrorMessage";
 
-export const CoinGraph = ({graphRange}) => {
+export type CoinGraphProps = {
+    graphRange: number
+}
+
+type GraphData = {
+  price: number;
+  shortDate: string;
+  fullDate: string;
+};
+
+export const CoinGraph = ({graphRange}: CoinGraphProps) => {
     const {urlName} = useParams()
-    const [graphData, setGraphData] = useState([]);
-    const {networkIssue ,setNetworkIssue, loading, setLoading } = useContext(cryptoDataContect)
+    const [graphData, setGraphData] = useState<GraphData[]>([]);
+    const context = useContext(cryptoDataContext)
 
     useEffect(() => {
         async function getGraphData() {
             try{
-                document.title = `${urlName.toLocaleUpperCase().slice(0,1) + urlName.toLocaleLowerCase().slice(1) + " Analysis"}`
-                setLoading((prev) => true)
+                document.title = `${urlName!.toLocaleUpperCase().slice(0,1) + urlName!.toLocaleLowerCase().slice(1) + " Analysis"}`
+                context?.setLoading((prev) => true)
                 const res = await axios.get(`https://api.coingecko.com/api/v3/coins/${urlName}/market_chart?vs_currency=inr&days=${graphRange}`)
-                setNetworkIssue(false);
-                setLoading((prev) => false)
-                setGraphData( res.data.prices.map((item) => {
+                context?.setNetworkIssue(false);
+                context?.setLoading((prev) => false)
+                setGraphData(res.data.prices.map((item: [number, number]) => {
                     return {
                         price: item[1],
                         shortDate : new Date(item[0]).toLocaleString("en-IN" , {
@@ -41,9 +50,8 @@ export const CoinGraph = ({graphRange}) => {
                 }))
             }    
             catch(error){
-               console.log(error)
-               setLoading(false)
-               setNetworkIssue(true)
+               context?.setLoading(false)
+               context?.setNetworkIssue(true)
             }    
         }
         getGraphData();
@@ -53,20 +61,20 @@ export const CoinGraph = ({graphRange}) => {
     if(graphData === null){
         return <h1>Loading...</h1>
     }
-  const firstPrice = graphData[0]?.price;
-  const lastPrice = graphData[graphData.length - 1]?.price;
-  const lineColor = lastPrice >= firstPrice ? "green" : "red";
+  const firstPrice: number = graphData[0]?.price;
+  const lastPrice: number  = graphData[graphData.length - 1]?.price;
+  const lineColor: 'green' | 'red' = lastPrice >= firstPrice ? "green" : "red";
 
-  if(loading){
+  if(context?.loading){
     return <Loading />
   }
-  if(networkIssue){
+  if(context?.networkIssue){
     return <ErrorMessage />
   }
 
     return <div className="coinGraphBody">
         <h1>Analysis </h1>
-        <div style={{height:'400px' }}>
+        <div style={{height:'400px'}}>
             <Line style={{height : "400px"}}
             data={{
                 labels: graphData.map((item) => item.shortDate) ,
@@ -112,12 +120,10 @@ export const CoinGraph = ({graphRange}) => {
                             mode : 'x'
                         }
                     },
-                    
-
                 } 
             }}
         />
-        <p>Graph From Last : {graphRange} day</p>
+        <p>Graph From Last : {graphRange || 0} day</p>
         </div>
 
     </div>

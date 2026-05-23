@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom";
 export const PageNotFound = () => {
-    const [time, setTime] = useState(5);
+    const [time, setTime] = useState<number>(5);
     const navigate = useNavigate()
     useEffect(() => {
         const interval = setInterval(() => {

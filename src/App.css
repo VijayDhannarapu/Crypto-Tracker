@@ -12,7 +12,7 @@
   --border-bottom : 2px solid rgb(195, 192, 192);
 }
 
-.white {
+.light {
   --background-color: #d8d4d4;
   --table-bg: rgba(104, 103, 103, 0.176);
   --trHover-bg: rgba(123, 123, 123, 0.59);

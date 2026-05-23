@@ -1,22 +1,34 @@
 import { useState, useEffect } from 'react'
 import Logo from './assets/Images/Logo.png'
-import { CryptoData } from './assets/CryptoData'
+import { CryptoData } from './assets/CryptoData';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { EachPage } from './assets/EachPage';
-import { cryptoDataContect } from './assets/ContextApi';
+import { cryptoDataContext } from './assets/ContextApi'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
+import { PageNotFound } from './assets/PageNotFound';
 import axios from "axios";
 import './App.css'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMoon,faSun } from '@fortawesome/free-solid-svg-icons';
-import { PageNotFound } from './assets/PageNotFound';
+
+export type Theme = 'dark' | 'light'
+export type Data = {
+  id: string
+  symbol: string
+  last_updated: string
+  market_cap_rank: number
+  image: string
+  market_cap: number
+  current_price: number
+  circulating_supply: string
+}
 
 const App = () => {
-  const [cryptoData, setCryptoData] = useState([]);
-  const [theme, setTheme] = useState("dark")
-  const [networkIssue, setNetworkIssue] = useState(false);
-  const [visibleCount, setVisibleCount] = useState([]);
-  const [search, setSearch] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [cryptoData, setCryptoData] = useState<Data[]>([]);
+  const [theme, setTheme] = useState<Theme>("dark")
+  const [networkIssue, setNetworkIssue] = useState<boolean>(false);
+  const [visibleCount, setVisibleCount] = useState<Data[]>([]);
+  const [search, setSearch] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(true);
 
   const router = createBrowserRouter([
     {
@@ -26,7 +38,7 @@ const App = () => {
     {
       path: "/coin/:urlName",
       element: <div>
-        <EachPage cryptoData={cryptoData} />
+        <EachPage />
       </div>
     },
     {
@@ -53,27 +65,27 @@ const App = () => {
       }
     }
     getData();
-
   }, [])
+
   if (cryptoData) {
     return (
       <div id='body' className={theme}>
         <nav>
           <h1>Crypto Tracker <img src={Logo} alt="logo" /> </h1>
-          <button onClick={() => setTheme((theme == "dark") ? "white" : "dark")}>{(theme == "dark") ? 
-            <FontAwesomeIcon icon={faSun} /> : 
+          <button onClick={() => setTheme((theme == 'dark') ? 'light' : 'dark')}>{(theme == "dark") ?
+            <FontAwesomeIcon icon={faSun} /> :
             <FontAwesomeIcon icon={faMoon} />} </button>
         </nav>
-
-        <cryptoDataContect.Provider value={{
+        <cryptoDataContext.Provider value={{
           cryptoData, setCryptoData, networkIssue, setNetworkIssue,
-          visibleCount, setVisibleCount, search, setSearch, loading, setLoading}}>
-
+          visibleCount, setVisibleCount, search, setSearch, loading, setLoading
+        }}>
           <RouterProvider router={router} />
 
-        </cryptoDataContect.Provider>
+        </cryptoDataContext.Provider>
       </div>
     )
+
   }
 }
 
